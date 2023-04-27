@@ -67,10 +67,13 @@ export default function UserDashboard() {
     function handleDelete(todoKey) {
         return async () => {
             const tempObj = { ...todos }
+
             delete tempObj[todoKey]
 
             setTodos(tempObj)
+
             const userRef = doc(db, 'users', currentUser.uid)
+
             await setDoc(userRef, {
                 'todos': {
                     [todoKey]: deleteField()
