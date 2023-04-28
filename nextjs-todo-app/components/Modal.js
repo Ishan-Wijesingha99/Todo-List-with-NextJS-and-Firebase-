@@ -16,6 +16,8 @@ export default function Modal(props) {
 
   if(!_document) return null
 
+
+  
   return ReactDom.createPortal(
     <div className='fixed w-screen h-screen top-0 left-0 bg-white text-slate-900 flex flex-col text-lg sm:text-xl'>
       <div className='flex items-center justify-between border-b border-solid border-slate-900 p-4'>

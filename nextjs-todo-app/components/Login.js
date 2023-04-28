@@ -1,13 +1,23 @@
 import { useAuth } from '@/context/AuthContext'
 import React, { useState } from 'react'
 
+
+
 export default function Login() {
+  // react form using state
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  // error string should use state
   const [error, setError] = useState(null)
+  
+  // this is just to see if they are on the login component or register component
   const [isLoggingIn, setIsLoggingIn] = useState(true)
 
+  // export firebase functions from useAuth()
   const { login, signup } = useAuth()
+
+
 
   const submitHandler = async () => {
     // if email or password field is empty, return out of this function and change error state
@@ -30,13 +40,17 @@ export default function Login() {
     }
   }
 
+
+
   return (
     <div className='flex-1 text-xs sm:text-sm flex flex-col justify-center items-center gap-4'>
 
       <h1 className='font-extrabold text-2xl sm:text-4xl select-none'>
+        {/* change header based on if they're registering or logging in */}
         {isLoggingIn ? "LOGIN" : "REGISTER"}
       </h1>
 
+      {/* conditionally render error message */}
       {error && <div className='w-full max-w-[40ch] border border-solid border-rose-400 text-rose-400 py-2 text-center'>{error}</div>}
 
       <input
@@ -62,6 +76,7 @@ export default function Login() {
         <h2 className='relative z-20'>SUBMIT</h2>
       </button>
 
+      {/* change button based on if they are registering or logging in */}
       <h2
       className='duration-300 hover:scale-110 cursor-pointer'
       onClick={() => setIsLoggingIn(prev => !prev)}
